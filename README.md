@@ -1,4 +1,4 @@
-# Scorecast
+# PickupNYC
 
 **CodePath WEB103 Final Project**
 
