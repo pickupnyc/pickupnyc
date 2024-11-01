@@ -10,15 +10,13 @@
 
 ### Description and Purpose
 
-This project is designed to analyze soccer teams' performance data, providing users with a detailed understanding of each team's strengths and weaknesses. By evaluating offensive metrics like goals, dangerous attacks, shots, and shots on target, the tool offers insights into a team's offensive capabilities, while defensive stats reveal areas of vulnerability.
+PickupNYC is a community-driven platform transforming how soccer enthusiasts in New York City connect, organize, and participate in pickup games and soccer-related discussions. Our mission is to make soccer more accessible across NYC's five boroughs by creating a vibrant, inclusive digital community.
 
-The app will also feature a machine learning model that predicts Premier League match outcomes, such as Manchester City vs Arsenal, based on an external dataset.
-
-Additionally, it includes a news feed to keep users informed on the latest updates about teams and players, and a platform where users can create, edit, update, and delete posts for organizing local pickup soccer matches.
+Additionally, it includes a news feed to keep users informed on the latest updates about teams and players.
 
 ### Inspirations
 
-The inspiration behind this app is to give bettors a competitive edge when deciding on Premier League matchups, providing critical analysis and predictions to help them make informed decisions. By offering deep insights into team performance and outcomes, the app equips users with valuable data that enhances their chances of making successful bets.
+In New York City's diverse soccer landscape, many enthusiasts face challenges in finding and organizing local games. PickupNYC bridges this gap by providing a unified platform where players can easily create, discover, and join games in their neighborhood, while engaging with fellow soccer lovers through discussions and community features.
 
 ## Tech Stack
 
@@ -30,19 +28,66 @@ The inspiration behind this app is to give bettors a competitive edge when decid
 
 **Developer Tools:** Git, GitHub, Figma, Postman
 
-### Features
+## Core Features
 
-- **User Authentication**: Secure login and registration system to allow users to create and manage accounts.
+### 🤝 Community Engagement
+- **User Profiles**
+  - Customizable profile with game history
+  - Authentication via email or Google sign-in
+  - Profile picture customization
+  
+- **Social Interactions**
+  - Create and participate in soccer discussions
+  - Like and comment on posts
+  - Connect with local players
 
-- **Payment Processing**: Integration with Stripe for handling secure payments and transactions.
+### ⚽ Pickup Game Organization
+- **Game Creation**
+  - Host games in any NYC borough
+  - Set custom rules and skill levels
+  - Specify player capacity and time slots
+  - Get updates about games
 
-- **Data Visualizations and Insights**: Interactive charts and graphs providing detailed analysis of team and player performance.
+- **Game Discovery**
+  - Browse games by borough and location
+  - Filter by date, time, and skill level
+  - View game details and player count
+  - Get location directions
 
-- **Machine Learning Match Predictor**: A predictive tool that forecasts the outcome of Premier League matches.
+- **Game Management**
+  - Register for upcoming games
+  - Track registered players
+  - Receive game updates
 
-- **Soccer News Feed**: A real-time feed delivering the latest updates on teams, players, and match events.
+### 🎯 Equipment Rental Service
+- **Available Equipment**
+  - Soccer balls
+  - Team pinnies/bibs
+  - Cones and markers
+  - Portable goal posts
 
-- **Pickup Game Organizer**: A platform where users can create posts to arrange local pickup soccer matches with other players.
+- **Rental Features**
+  - Convenient delivery to game location
+  - On-site support during games
+  - Secure deposit system
+  - Damage protection insurance
+
+### 📱 Platform Features
+
+- **Search & Discovery**
+  - Advanced game search
+  - Player and organizer search
+  - Borough-specific browsing
+
+- **Live Updates**
+ - Transfer news and updates
+ - League standings
+ - Team and player statistics
+
+- **Coverage**
+ - Major leagues and tournaments 
+ - Match highlights and recaps
+ - Breaking news and announcements
 
 ## Video Demo
 
