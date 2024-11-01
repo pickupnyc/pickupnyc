@@ -18,7 +18,6 @@
 | Column Name | Type | Description |
 |-------------|------|-------------|
 | id | serial | Primary key |
-| type | varchar | 'game' or 'thread' |
 | body | text | Post content (nullable) |
 | creator_id | int | Foreign key -> users.id |
 | likes | int | Number of likes |
@@ -38,7 +37,6 @@
 | capacity | int | Maximum players |
 | count | int | Current player count |
 | premium | boolean | Premium/free game indicator |
-| post_id | int | Foreign key -> posts.id |
 
 ## Relationships
 
@@ -52,7 +50,6 @@
 
 3. **Posts to Pickups**
    - One-to-One: Each game post has one pickup game entry
-   - Foreign key: pickups.post_id references posts.id
 
 4. **Posts to Posts (Comments)**
    - Many-to-Many: Posts can have multiple comment posts
