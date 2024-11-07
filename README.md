@@ -32,14 +32,16 @@ In New York City's diverse soccer landscape, many enthusiasts face challenges in
 
 ### 🤝 Community Engagement
 - **User Profiles**
-  - Customizable profile with game history
-  - Authentication via email or Google sign-in
+  <!-- - Customizable profile with game history -->
+  ✅ - Authentication via email or Google sign-in
+  <img width="1425" alt="container diagram" src="https://imgur.com/a/L6wAZxe.gif">
+  
   - Profile picture customization
   
 - **Social Interactions**
   - Create and participate in soccer discussions
   - Like and comment on posts
-  - Connect with local players
+  <!-- - Connect with local players -->
 
 ### ⚽ Pickup Game Organization
 - **Game Creation**
@@ -59,7 +61,7 @@ In New York City's diverse soccer landscape, many enthusiasts face challenges in
   - Track registered players
   - Receive game updates
 
-### 🎯 Equipment Rental Service
+<!-- ### 🎯 Equipment Rental Service
 - **Available Equipment**
   - Soccer balls
   - Team pinnies/bibs
@@ -70,13 +72,13 @@ In New York City's diverse soccer landscape, many enthusiasts face challenges in
   - Convenient delivery to game location
   - On-site support during games
   - Secure deposit system
-  - Damage protection insurance
+  - Damage protection insurance -->
 
 ### 📱 Platform Features
 
 - **Search & Discovery**
-  - Advanced game search
-  - Player and organizer search
+  <!-- - Advanced game search
+  - Player and organizer search -->
   - Borough-specific browsing
 
 - **Live Updates**
@@ -92,74 +94,4 @@ In New York City's diverse soccer landscape, many enthusiasts face challenges in
 ## Video Demo
 
 ## Container Diagram
-<img width="1425" alt="Screenshot 2024-10-22 at 11 03 05 PM" src="https://github.com/user-attachments/assets/13bd92e9-60a2-429c-931e-de9f2ad761f9">
-
-
-## Installation Instructions
-
-### 1. **Clone the repository from GitHub:**
-
-```bash
-git clone <repository-url>
-```
-Replace `<repository-url>` with the URL of the repository.
-
-### 2. **Navigate into the project folder:**
-
-```bash
-cd <project-folder>
-```
-Replace `<project-folder>` with the name of the folder that was cloned.
-
-### 3. **Install dependencies for both React (frontend) and Node.js (backend):**
-
-**For the frontend:**
-
-Navigate into the React folder:
-```bash
-cd client
-```
-
-Install dependencies:
-
-```bash
-npm install
-```
-
-**For the backend:**
-
-Navigate into the backend folder:
-
-```bash
-cd ../server
-```
-
-Install backend dependencies:
-
-```bash
-npm install
-```
-
-### 4. **Set up environment variables (if required):**
-
-Check for a `.env.example` file in the root, backend, or frontend folder. Copy it to create your own `.env` file:
-
-```bash
-cp .env.example .env
-```
-Then, fill in any required environment variables.
-
-
-### 5. **Run the backend server:**
-
-```bash
-cd server
-npm start
-```
-
-### 6. **Run the frontend client:**
-
-```bash
-cd client
-npm run dev
-```
+<img width="1425" alt="container diagram" src="https://github.com/user-attachments/assets/13bd92e9-60a2-429c-931e-de9f2ad761f9">
