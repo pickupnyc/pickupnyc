@@ -1,4 +1,4 @@
-const GoogleLogin = () => {
+export default function GoogleLogin() {
     const handleGoogleLogin = () => {
         window.open("/api/auth/google", "_self");
     };
@@ -36,4 +36,3 @@ const GoogleLogin = () => {
     );
 };
 
-export default GoogleLogin;
