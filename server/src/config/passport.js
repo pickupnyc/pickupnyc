@@ -25,22 +25,19 @@ export default function configurePassport(passport) {
                         user = {
                             user_id: currentUserQuery.rows[0].id,
                             username: currentUserQuery.rows[0].username,
-                            img: currentUserQuery.rows[0].img,
                         };
                     } else {
                         const newUser = await pool.query(
-                            "INSERT INTO users (username, email, img, google_id) VALUES ($1, $2, $3, $4) RETURNING id, username, img",
+                            "INSERT INTO users (username, email, google_id) VALUES ($1, $2, $3, $4) RETURNING id, username",
                             [
                                 userData.name,
                                 userData.email,
-                                userData.picture,
                                 userData.sub,
                             ],
                         );
                         user = {
                             user_id: newUser.rows[0].id,
                             username: newUser.rows[0].username,
-                            img: currentUserQuery.rows[0].img,
                         };
                     }
                     done(null, user);
