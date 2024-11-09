@@ -16,16 +16,16 @@ const Header = () => {
                 </Link>
             </div>
             <div className="flex flex-row gap-x-8">
-                <Link to="/" className="hover:bg-tea_green flex items-center rounded-full px-5 py-3">
+                <Link to="/" className="hover:bg-teaGreen flex items-center rounded-full px-5 py-3">
                     <span className="text-primary font-bold tracking-wide">Home</span>
                 </Link>
-                <Link to="/matches" className="hover:bg-tea_green flex items-center rounded-full px-5 py-3">
+                <Link to="/matches" className="hover:bg-teaGreen flex items-center rounded-full px-5 py-3">
                     <span className="text-primary font-bold tracking-wide">Matches</span>
                 </Link>
-                <Link to="/forum" className="hover:bg-tea_green flex items-center rounded-full px-5 py-3">
+                <Link to="/forum" className="hover:bg-teaGreen flex items-center rounded-full px-5 py-3">
                     <span className="text-primary font-bold tracking-wide">Forum</span>
                 </Link>
-                <Link to="/help" className="hover:bg-tea_green flex items-center rounded-full px-5 py-3">
+                <Link to="/help" className="hover:bg-teaGreen flex items-center rounded-full px-5 py-3">
                     <span className="text-primary font-bold tracking-wide">Help</span>
                 </Link>
             </div>
