@@ -3,7 +3,15 @@ export default {
     content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
     theme: {
         extend: {
+            fontFamily: {
+                geist: ["Geist", "sans-serif"],
+            },
             colors: {
+                primary: "#333333",
+                offWhite: "#FDFFF8",
+                teaGreen: "#D0F0C0",
+                soccerGreen: "#74d434",
+                darkGreen: "#4c8527",
                 google: {
                     "text-gray": "#3c4043",
                     "button-blue": "#1a73e8",
