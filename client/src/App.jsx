@@ -8,13 +8,14 @@ import Fallback from "./pages/Fallback";
 import Footer from "./components/Footer";
 import Login from "./pages/Login";
 import Header from "./components/Header";
+import Matches from "./pages/Matches";
 
 function App() {
     return (
         <>
             <UserProvider>
                 <Router>
-                    <div className="bg-offWhite flex h-screen flex-col">
+                    <div className="flex h-screen flex-col bg-offWhite">
                         <Header />
                         <div className="flex-grow">
                             <Routes>
@@ -22,6 +23,7 @@ function App() {
                                 <Route path="/signup" element={<Signup />} />
                                 <Route path="*" element={<Fallback />} />
                                 <Route path="/login" element={<Login />} />
+                                <Route path="/matches" element={<Matches />} />
                             </Routes>
                         </div>
                         <Footer />
