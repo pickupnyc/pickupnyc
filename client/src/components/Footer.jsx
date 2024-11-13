@@ -1,14 +1,8 @@
-import React from 'react'
-
 function Footer() {
     return (
-        <>
-            <div>
-                <footer className="bg-blue-500 text-white text-center py-3 mt-2">
-                    <p>&copy; 2024 PickUp NYC</p>
-                </footer>
-            </div>
-        </>
+        <footer className="bg-darkGreen py-6 text-center">
+            <p className="text-offWhite">&copy; 2024 PickUpNYC</p>
+        </footer>
     );
 }
 
