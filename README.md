@@ -55,6 +55,7 @@ and community features.
 
 - **Pickup Game Form** ✅
     - Create form to setup pickup Games
+![Kapture 2024-11-13 at 16 38 20](https://github.com/user-attachments/assets/b3a57c04-1476-4a67-bac6-41014b44d300)
 
 -   **Game Creation**
 
