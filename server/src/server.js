@@ -3,10 +3,10 @@ import cors from "cors";
 import dotenv from "dotenv";
 import session from "express-session";
 import passport from "passport";
-
 import configurePassport from "./config/passport.js";
 
 import authRoutes from "./routes/authRouter.js";
+import pickupRoutes from './routes/pickupRoutes.js';
 
 dotenv.config();
 
@@ -41,6 +41,8 @@ configurePassport(passport);
 
 // Routes
 app.use("/api/auth", authRoutes);
+
+app.use('/api/pickup', pickupRoutes);
 
 app.get("/", (req, res) => {
     res.json({
