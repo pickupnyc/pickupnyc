@@ -28,7 +28,7 @@ export default function configurePassport(passport) {
                         };
                     } else {
                         const newUser = await pool.query(
-                            "INSERT INTO users (username, email, google_id) VALUES ($1, $2, $3, $4) RETURNING id, username",
+                            "INSERT INTO users (username, email, google_id) VALUES ($1, $2, $3) RETURNING id, username",
                             [
                                 userData.name,
                                 userData.email,
