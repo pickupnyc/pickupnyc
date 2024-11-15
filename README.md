@@ -30,9 +30,7 @@ and community features.
 
 **Frontend:** React, Tailwind CSS
 
-**Backend:** Node.js, Express.js, (Flask or AWS Lambda), PostgreSQL
-
-**Machine Learning:** Python, NumPy, Pandas, Matplotlib, Seaborn, Scikit-learn
+**Backend:** Node.js, Express.js, PostgreSQL
 
 **Developer Tools:** Git, GitHub, Figma, Postman
 
@@ -54,6 +52,10 @@ and community features.
     <!-- - Connect with local players -->
 
 ### ⚽ Pickup Game Organization
+
+- **Pickup Game Form** ✅
+    - Create form to setup pickup Games
+![Kapture 2024-11-13 at 16 38 20](https://github.com/user-attachments/assets/b3a57c04-1476-4a67-bac6-41014b44d300)
 
 -   **Game Creation**
 
