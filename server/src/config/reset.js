@@ -124,8 +124,8 @@ async function deleteUsersTable() {
 
 async function alterPickupsTable() {
     const alterPickupsTableQuery = `
-    ALTER TABLE pickups 
-    ALTER COLUMN time TYPE time USING time::time;
+    ALTER TABLE pickups
+    ALTER COLUMN location TYPE text USING location::text;
     `;
     try {
         await pool.query(alterPickupsTableQuery);
@@ -135,10 +135,11 @@ async function alterPickupsTable() {
     };
 }
 
-// await alterPickupsTable();
+
+await alterPickupsTable();
 // await deletePostsTable();
 // await createUsersTable();
-await createPostsTable();
+// await createPostsTable();
 // await createPickupsTable();
 // await createPickupParticipantsTable();
 // await deleteUsersTable();

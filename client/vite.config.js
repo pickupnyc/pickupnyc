@@ -13,4 +13,9 @@ export default defineConfig({
             },
         },
     },
+    // resolve: {
+    //     alias: {
+    //       '@popperjs/core': '@popperjs/core/dist/umd/popper.min.js',
+    //     }
+    //   },
 });

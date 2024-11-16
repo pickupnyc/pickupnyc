@@ -25,3 +25,13 @@ export const createPickupGame = async (req, res) => {
         res.status(500).json({ message: 'Error creating pickup game' });
     }
 };
+
+export const getPickupGames = async (req, res) => {
+    try {
+        const result = await pool.query('SELECT * FROM pickups');
+        res.status(200).json(result.rows);
+    } catch (error) {
+        console.error('Error fetching pickup games:', error);
+        res.status(500).json({ message: 'Error fetching pickup games' });
+    }
+};
