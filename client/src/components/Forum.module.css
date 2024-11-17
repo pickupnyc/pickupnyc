@@ -6,3 +6,11 @@
     margin-top: 20px;
     width: 75%;
 }
+
+.accordionHead{
+    z-index: 1;
+}
+
+.accordionBody{
+    z-index: 5;
+}

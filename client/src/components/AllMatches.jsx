@@ -1,9 +1,13 @@
 import { useState, useEffect } from "react"
+import styles from "../components/Forum.module.css"
 
 export default function AllMatches() {
     const [matches, setMatches] = useState([]);
     const [uniqueBoroughs, setUniqueBoroughs] = useState([]);
-    
+    const [activeKey, setActiveKey] = useState(null);
+
+
+
     useEffect(() => {
         const allMatches = async () => {
             const response = await fetch('/api/pickup');
@@ -12,76 +16,57 @@ export default function AllMatches() {
             setMatches(data);
         }
         allMatches();
-    },[])
+    }, []);
 
-    useEffect(()=>{
+    useEffect(() => {
         setUniqueBoroughs([...new Set(matches.map((match) => match.borough))]);
         console.log(uniqueBoroughs);
-        console.log("The line right abobe this is the list of unique boroughs.");
-    }, [matches])
+        console.log("The line right above this is the list of unique boroughs.");
+    }, [matches]);
+
+    const toggleAccordion = (key) => {
+        setActiveKey(activeKey === key ? null : key);
+    };
 
     return (
-        <>
-            
-            <div className="accordion" id="match_accordion">
-                {uniqueBoroughs.map((borough)=>{
-                    return (
-                        <div className="accordion-item" key={borough}>
-                            <h2 className="accordion-header">
-                            <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target={`#collapse${borough}`} aria-expanded="true" aria-controls={`collapse${borough}`}>
-                                {borough}
-                            </button>
-                            </h2>
-                            <div id={`collapse${borough}`} className="accordion-collapse collapse show" data-bs-parent="#match_accordion">
-                                <div className="accordion-body">
-                                    Well. These are supposed to be
-                                </div>
-                            </div>
+        <div className={`accordion accordion-flush ${styles.accordionHead}`} id="accordionFlushExample">
+            {uniqueBoroughs.map((borough) => (
+                <div className="accordion-item" key={borough}>
+                    <h2 className="accordion-header">
+                        <button
+                            className={`accordion-button ${activeKey !== borough ? 'collapsed' : ''}`}
+                            type="button"
+                            onClick={() => toggleAccordion(borough)}
+                            aria-expanded={activeKey === borough}
+                            aria-controls={`flush-collapse-${borough}`}
+                        >
+                            {borough}
+                        </button>
+                    </h2>
+                    <div
+                        id={`flush-collapse-${borough}`}
+                        className={`accordion-collapse collapse ${activeKey === borough ? 'show' : ''}`}
+                        aria-labelledby={`heading-${borough}`}
+                    >
+                        <div className={`accordion-body ${styles.accordionBody}`}>
+                            {/* Display matches for this borough */}
+                            {matches
+                                .filter(match => match.borough === borough)
+                                .map(match => (
+                                    <div key={match.id} className="border-bottom py-3">
+                                        {/* Add your match details here. This is just an example structure: */}
+                                        <h5>Date: {match.date}</h5>
+                                        <p>Location: {match.location}</p>
+                                        <p>Time: {match.time}</p>
+                                        {/* Add more match details as needed */}
+                                    </div>
+                                ))
+                            }
                         </div>
-                    )
-                })}
-
-            </div>
-
-
-            {/* <div className="accordion" id="accordionExample">
-                <div className="accordion-item">
-                    <h2 className="accordion-header">
-                    <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        Accordion Item #1
-                    </button>
-                    </h2>
-                    <div id="collapseOne" className="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-                    <div className="accordion-body">
-                        <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classNamees that we use to style each element. These classNamees control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                    </div>
+                        
                     </div>
                 </div>
-                <div className="accordion-item">
-                    <h2 className="accordion-header">
-                    <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        Accordion Item #2
-                    </button>
-                    </h2>
-                    <div id="collapseTwo" className="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                    <div className="accordion-body">
-                        <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classNamees that we use to style each element. These classNamees control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                    </div>
-                    </div>
-                </div>
-                <div className="accordion-item">
-                    <h2 className="accordion-header">
-                    <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        Accordion Item #3
-                    </button>
-                    </h2>
-                    <div id="collapseThree" className="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                    <div className="accordion-body">
-                        <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classNamees that we use to style each element. These classNamees control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                    </div>
-                    </div>
-                </div>
-                </div> */}
-        </>
-    )
+            ))}
+        </div>
+    );
 }
