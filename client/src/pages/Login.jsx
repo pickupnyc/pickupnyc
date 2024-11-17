@@ -9,14 +9,15 @@ const Login = () => {
     const toggle = () => {
         setPassVisible(!passVisible);
     };
+    
     return (
         <div className="flex h-screen w-full items-center justify-center">
             <main className="bg-offWhite relative flex h-screen w-full flex-col items-center justify-center">
-                <div className="container absolute inset-44 mx-auto rounded-lg border-2 bg-white shadow-xl md:h-3/5 md:w-2/5 lg:h-2/5 lg:w-80 xl:h-1/2 xl:w-1/4">
+                <div className="container absolute inset-44 mx-auto rounded-lg border-2 bg-white shadow-xl md:h-2/5 md:w-2/5 lg:h-2/5 lg:w-80 xl:h-2/5 xl:w-80">
                     <div className="flex flex-col items-center justify-center">
                         <h1 className="mb-1 p-3 pb-1 text-center text-2xl font-semibold">Sign In</h1>
                         <p className="mb-2">
-                            Welcome to <span className="inline font-bold text-blue-500">PickUp NYC.</span>
+                            Welcome to <span className="inline font-bold text-darkGreen">PickUpNYC.</span>
                         </p>
 
                         <div className="mb-4">
@@ -47,20 +48,20 @@ const Login = () => {
                             </div>
                         </div>
 
-                        <Link to="" className="mb-4">
+                        {/* <Link to="" className="mb-4">
                             Forgot Password?
-                        </Link>
+                        </Link> */}
 
-                        <div className="mb-4">
+                        <div className="mb-6 mt-2">
                             <Link
                                 to=""
-                                className="mt-4 cursor-pointer rounded-md bg-gradient-to-r from-indigo-500 to-blue-500 px-10 py-2 font-bold text-white transition duration-150 ease-in-out hover:bg-indigo-600 hover:to-blue-600"
+                                className="mt-4 cursor-pointer rounded-md bg-darkGreen px-10 py-2 font-bold text-white"
                             >
                                 Sign In
                             </Link>
                         </div>
 
-                        <div className="">
+                        <div className="mb-4">
                             <GoogleLogin />
                         </div>
 
