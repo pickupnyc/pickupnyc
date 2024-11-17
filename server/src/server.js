@@ -26,7 +26,6 @@ if (process.env.NODE_ENV === "production") {
     app.use(express.static("public"));
 }
 
-app.set("trust proxy", 1); 
 app.use(
     session({
         secret: process.env.COOKIE_SECRET,
