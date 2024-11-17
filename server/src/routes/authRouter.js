@@ -7,11 +7,16 @@ const router = express.Router();
 router.get("/login/success", (req, res) => {
     if (req.user) {
         res.status(200).json({ success: true, user: req.user });
+    } else {
+        res.redirect("/api/auth/login/failure");
     }
 });
 
 router.get("/login/failure", (req, res) => {
-    res.status(401).json({ success: false, message: "failure" });
+    res.status(401).json({
+        success: false,
+        message: "Authentication failed. Please try again.",
+    });
 });
 
 router.get("/logout", (req, res, next) => {
@@ -38,7 +43,7 @@ router.get(
     "/google/callback",
     passport.authenticate("google", {
         successRedirect: `${process.env.CLIENT_URL}`,
-        failureRedirect: "/login/failure",
+        failureRedirect: "/api/auth/login/failure",
     }),
 );
 
