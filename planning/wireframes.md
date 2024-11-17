@@ -1,5 +1,5 @@
 # Wireframes
-Wire Frames for Scorecast App
+Wire Frames for PickUpNYC App
 
 ## List of Pages
 - Landing Page ⭐
@@ -7,7 +7,6 @@ Wire Frames for Scorecast App
 - Pickup Game Organizer Page ⭐
 - Login Page ⭐
 - SignUp Page ⭐
-- Data Visualizations / Machine Learning Match Predictor Page
 
 ## Wireframe 1: Landing Page
 <img width="536" alt="Screenshot 2024-10-22 at 11 05 36 PM" src="https://github.com/user-attachments/assets/b9afec4f-aea9-443f-a54b-21ba286339ec">
@@ -17,7 +16,6 @@ Wire Frames for Scorecast App
 
 ## Wireframe 3: Pickup Game Organizer Page
 <img width="541" alt="Screenshot 2024-10-22 at 11 05 57 PM" src="https://github.com/user-attachments/assets/d15cc58b-a1e9-4cdc-937d-e83c2e380568">
-
 
 ## Wireframe 4: Login Page
 <img width="306" alt="Screenshot 2024-10-22 at 11 04 52 PM" src="https://github.com/user-attachments/assets/4f960f2e-f673-4671-bd02-a60da1c7fc7b">

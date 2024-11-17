@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
+import GoogleLogin from "../components/GoogleLogin";
 
 // TODO: Make responsive
 // TODO: Implement form submission logic
@@ -86,11 +87,11 @@ function Signup() {
 
     return (
         <>
-            <main className="flex flex-col h-screen relative bg-purple-50">
-                <div className="absolute md:inset-32 inset-44 container mx-auto border-2 bg-white md:w-2/5 md:h-3/4 lg:w-80 lg:h-3/5 xl:w-1/4 xl:h-2/3 rounded-lg shadow-xl">
+            <main className="flex flex-col h-screen relative">
+                <div className="absolute md:inset-32 inset-44 container mx-auto border-2 bg-white md:w-2/5 md:h-3/5 lg:w-80 lg:h-3/5 xl:w-80 xl:h-3/5 rounded-lg shadow-xl">
                     <div className="flex flex-col justify-center items-center">
                         <h1 className="text-center text-2xl font-bold p-3 pb-1 mb-1">Sign Up</h1>
-                        <p className="mb-2">Welcome to <span className="text-blue-500 inline font-bold">PickUp NYC.</span></p>
+                        <p className="mb-2">Welcome to <span className="text-darkGreen inline font-bold">PickUpNYC.</span></p>
 
                         <div className="mb-4">
                             <label htmlFor="name" className="block text-gray-800 font-semibold text-sm">
@@ -164,13 +165,17 @@ function Signup() {
                         </div>
 
                         <div className="mb-6">
-                            <Link to="" className="cursor-pointer bg-gradient-to-r from-indigo-500 to-blue-500 text-white font-bold py-2 px-20 rounded-md mt-4 hover:bg-indigo-600 hover:to-blue-600 transition ease-in-out duration-150" >
+                            <Link to="" className="cursor-pointer text-white bg-darkGreen font-bold py-2 px-20 rounded-md mt-4" >
                                 Sign Up
                             </Link>
                         </div>
 
+                        <div className="mb-4">
+                            <GoogleLogin />
+                        </div>
+
                         <div>
-                            <p>Already have an account? <Link to="/signin"><strong>Sign In</strong></Link></p>
+                            <p>Already have an account? <Link to="/login"><strong>Sign In</strong></Link></p>
                         </div>
                         
                     </div>
