@@ -32,7 +32,7 @@ app.use(
         cookie: {
             // secure means an HTTPS connection is required, must be used in production
             secure: process.env.NODE_ENV === "production" ? true : "auto",
-            sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+            sameSite: "lax",
             maxAge: 3600000, // 1 hour
             httpOnly: true,
         },
