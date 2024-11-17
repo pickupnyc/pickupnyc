@@ -106,9 +106,3 @@ and community features.
 -   Major leagues and tournaments
 -   Match highlights and recaps
 -   Breaking news and announcements
-
-## Video Demo
-
-## Container Diagram
-
-<img width="1425" alt="container diagram" src="https://github.com/user-attachments/assets/13bd92e9-60a2-429c-931e-de9f2ad761f9">
