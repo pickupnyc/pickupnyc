@@ -1,0 +1,13 @@
+{
+    "name": "pickupnyc",
+    "description": "CodePath WEB103 Final Project",
+    "type": "module",
+    "scripts": {
+        "dev": "concurrently \"cd client && npm run dev\" \"cd server && npm run dev\"",
+        "build": "cd client && npm install && npm run build",
+        "start": "cd server && npm install && npm run start"
+    },
+    "dependencies": {
+        "concurrently": "^9.1.0"
+    }
+}
