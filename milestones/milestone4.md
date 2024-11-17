@@ -8,7 +8,7 @@ This unit, be sure to complete all tasks listed below. To complete a task, place
 
 - [x] Update the status of issues in your project board as you complete them
 - [x] In `readme.md`, check off the features you have completed in this unit by adding a ✅ emoji in front of their title
-  - [ ] Under each feature you have completed, **include a GIF** showing feature functionality
+  - [x] Under each feature you have completed, **include a GIF** showing feature functionality
 - [x] In this document, complete the **Reflection** section below
 
 ## Reflection
