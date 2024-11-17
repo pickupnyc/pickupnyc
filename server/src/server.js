@@ -31,9 +31,8 @@ app.use(
         secret: process.env.COOKIE_SECRET,
         cookie: {
             // secure means an HTTPS connection is required, must be used in production
-            secure: process.env.NODE_ENV === "production",
-            // "lax" allows for same site requests, it needs to be set in production
-            sameSite: process.env.NODE_ENV === "production" ? "lax" : "none",
+            secure: process.env.NODE_ENV === "production" ? true : "auto",
+            sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
             maxAge: 3600000, // 1 hour
             httpOnly: true,
         },
