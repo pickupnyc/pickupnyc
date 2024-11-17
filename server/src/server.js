@@ -44,11 +44,6 @@ app.use("/api/auth", authRoutes);
 
 app.use('/api/pickup', pickupRoutes);
 
-app.get("/", (req, res) => {
-    res.json({
-        message: "API",
-    });
-});
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
