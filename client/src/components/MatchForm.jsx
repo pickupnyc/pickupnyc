@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 
 import { useUser } from "../hooks/useUser";
 
-const MatchForm = () => {
+const MatchForm = ({onClose}) => {
     const {
         register,
         handleSubmit,
@@ -28,6 +28,7 @@ const MatchForm = () => {
                 });
                 const data = await response.json();
                 console.log("Match created:", data);
+                onClose();
             } catch (error) {
                 console.error("Error creating match:", error);
             }
