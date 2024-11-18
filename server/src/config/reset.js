@@ -136,7 +136,7 @@ async function alterPickupsTable() {
 }
 
 
-await alterPickupsTable();
+// await alterPickupsTable();
 // await deletePostsTable();
 // await createUsersTable();
 // await createPostsTable();
