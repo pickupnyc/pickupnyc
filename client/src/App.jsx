@@ -10,6 +10,7 @@ import Login from "./pages/Login";
 import Header from "./components/Header";
 import Matches from "./pages/Matches";
 import Help from "./pages/Help";
+import Forum from "./pages/Forum";
 
 function App() {
     return (
@@ -25,6 +26,7 @@ function App() {
                                 <Route path="*" element={<Fallback />} />
                                 <Route path="/login" element={<Login />} />
                                 <Route path="/matches" element={<Matches />} />
+                                <Route path="/forum" element={<Forum />} />
                                 <Route path="/help" element={<Help />} />
                             </Routes>
                         </div>

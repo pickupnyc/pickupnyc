@@ -17,6 +17,22 @@ const MatchForm = () => {
             host: user.user_id,
         };
         console.log("Form Data:", formDataWithUserId);
+        async function createMatch() {
+            try {
+                const response = await fetch("/api/pickup/create", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(formDataWithUserId),
+                });
+                const data = await response.json();
+                console.log("Match created:", data);
+            } catch (error) {
+                console.error("Error creating match:", error);
+            }
+        }
+        createMatch();
     };
 
     return (

@@ -5,14 +5,15 @@ export const createPickupGame = async (req, res) => {
     try {
         const { title, borough, date, time, location, host, rules, capacity, premium } = req.body;
 
-        // Change Location to a string instead of a point in the db
-        const locationPoint = `(${location.lat}, ${location.lng})`; // Assuming location has `lat` and `lng` properties
+        // Ensure that the location is provided as an array or string that can be converted to a PostgreSQL point
+        const locationPoint = '(76,-67)'; // Assuming location has `lat` and `lng` properties
+        const formattedTime = time + ':00'; 
 
         const result = await pool.query(
             `INSERT INTO pickups (title, borough, date, time, location, host, rules, capacity, premium)
              VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
              RETURNING *`,
-            [title, borough, date, time, locationPoint, host, rules, capacity, premium]
+            [title, borough, date, formattedTime, locationPoint, host, rules, capacity, premium]
         );
 
         res.status(201).json({

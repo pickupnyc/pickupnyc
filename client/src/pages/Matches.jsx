@@ -1,11 +1,12 @@
 import { useState } from "react";
-
+import { useEffect } from "react";
 import { useUser } from "../hooks/useUser";
-
 import Modal from "../components/Modal";
 import MatchForm from "../components/MatchForm";
+import AllMatches from "../components/AllMatches";
 
 const Matches = () => {
+    const [matches, setMatches] = useState([]);
     const { user } = useUser();
     const [isOpen, setIsOpen] = useState(false);
     const [showAuthError, setShowAuthError] = useState(false);
@@ -23,6 +24,8 @@ const Matches = () => {
         setIsOpen(false);
     };
 
+
+    
     return (
         <div className="mx-auto flex w-full max-w-[1440px] flex-col px-24 py-8">
             <div className="relative flex w-full flex-col items-center justify-center gap-y-4 rounded-xl bg-gray-100 p-4">
@@ -42,6 +45,7 @@ const Matches = () => {
             <Modal isOpen={isOpen} onClose={handleCloseForm}>
                 <MatchForm />
             </Modal>
+            <AllMatches matches={matches} />
         </div>
     );
 };
