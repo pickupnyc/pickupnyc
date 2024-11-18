@@ -4,15 +4,17 @@ import { useUser } from "../hooks/useUser";
 import Modal from "../components/Modal";
 import MatchForm from "../components/MatchForm";
 import AllMatches from "../components/AllMatches";
+import Toast from "../components/Toast";
 
 const Matches = () => {
     const [matches, setMatches] = useState([]);
     const { user } = useUser();
     const [isOpen, setIsOpen] = useState(false);
+    const [showToast, setShowToast] = useState(false);
 
     const handleOpenForm = () => {
         if (!user) {
-            console.error("Must be authenticated!");
+            setShowToast(true);
         } else {
             setIsOpen(true);
         }
@@ -22,23 +24,28 @@ const Matches = () => {
         setIsOpen(false);
     };
 
+    const handleCloseToast = () => {
+        setShowToast(false);
+    };
 
-    
     return (
-        <div className="mx-auto flex w-full max-w-[1440px] flex-col px-24 py-8">
-            <div className="flex w-full items-center justify-center">
+        <div className="mx-auto flex w-full max-w-[1440px] flex-col px-24 py-8 md:px-12">
+            <div className="w-full flex justify-end mb-8">
                 <button
                     onClick={handleOpenForm}
-                    className="flex max-w-[140px] justify-center rounded-full border-2 border-darkGreen bg-darkGreen px-6 py-4 text-offWhite hover:bg-offWhite hover:text-darkGreen"
+                    className="font-bold py-2.5 px-5 rounded transition-colors border-2 border-darkGreen bg-darkGreen text-offWhite hover:bg-offWhite hover:text-darkGreen"
                 >
                     Create +
                 </button>
             </div>
-
             <Modal isOpen={isOpen} onClose={handleCloseForm}>
-                <MatchForm />
+                <MatchForm onClose={handleCloseForm} />
             </Modal>
             <AllMatches matches={matches} />
+            <Toast 
+                show={showToast}
+                onClose={handleCloseToast}
+            />
         </div>
     );
 };
