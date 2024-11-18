@@ -7,7 +7,7 @@ import AllMatches from "../components/AllMatches";
 import Toast from "../components/Toast";
 
 const Matches = () => {
-    const [matches, setMatches] = useState([]);
+    const nullUser = {user_id: -1};
     const { user } = useUser();
     const [isOpen, setIsOpen] = useState(false);
     const [showToast, setShowToast] = useState(false);
@@ -41,7 +41,7 @@ const Matches = () => {
             <Modal isOpen={isOpen} onClose={handleCloseForm}>
                 <MatchForm onClose={handleCloseForm} />
             </Modal>
-            <AllMatches matches={matches} />
+            <AllMatches user={user ? user : nullUser}/>
             <Toast 
                 show={showToast}
                 onClose={handleCloseToast}

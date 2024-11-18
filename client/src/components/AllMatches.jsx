@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { ChevronDown } from "lucide-react";
 
-export default function AllMatches() {
+export default function AllMatches({ user }) {
   const [matches, setMatches] = useState([]);
   const [uniqueBoroughs, setUniqueBoroughs] = useState([]);
   const [activeKey, setActiveKey] = useState(null);
@@ -16,10 +16,13 @@ export default function AllMatches() {
     allMatches();
   }, []);
 
+
   useEffect(() => {
     setUniqueBoroughs([...new Set(matches.map((match) => match.borough))]);
     console.log(uniqueBoroughs);
     console.log("The line right above this is the list of unique boroughs.");
+    console.log(user);
+    console.log("That is the user");
   }, [matches]);
 
   const toggleAccordion = (borough) => {
@@ -82,34 +85,22 @@ export default function AllMatches() {
                         .map(match => (
                             <li className="list-group-item border-b border-gray-200 py-4" key={match.id}>
                                 <div className="grid grid-cols-4 gap-4 items-center">
-                                    <div className="text-gray-700">{Number(match.capacity/2)} v {Number(match.capacity/2)}</div>
+                                    <div className="text-gray-700">{match.title} : {Number(match.capacity/2)} v {Number(match.capacity/2)}</div>
                                     <div className="text-gray-700">{match.location}</div>
                                     <div className="text-gray-700">{match.count} / {match.capacity}</div>
                                     <div className="text-gray-700">{formatDate(match.date)}</div>
-                                    {/* <div className="text-gray-700">{formatTime(match.date)}</div> */}
+                                    <div className="flex gap-8 items-center">
+                                        <button className={`text-sm text-start ${user.user_id === match.host ? 'text-gray-400' : 'text-blue-600 hover:text-blue-800'}`}  disabled={user.user_id === match.host}>
+                                            Join
+                                        </button>
+                                        <button className={`text-sm text-start ${user.user_id !== match.host ? 'text-gray-400' : 'text-blue-600 hover:text-blue-800'}`} disabled={user.user_id !== match.host}>
+                                            Edit
+                                        </button>
+                                    </div>
                                 </div>
                             </li>
-                            // <div 
-                            // key={match.id} 
-                            // className="border-b border-gray-200 last:border-b-0 py-4 first:pt-0 last:pb-0"
-                            // >
-                            // <h5 className="text-lg font-semibold text-gray-900 mb-2">
-                            //     Date: {match.date}
-                            // </h5>
-                            // <p className="text-gray-700 mb-2">
-                            //     Location: {match.location}
-                            // </p>
-                            // <p className="text-gray-700">
-                            //     Time: {match.time}
-                            // </p>
-                            // </div>
                         ))
                         }
-                    
-                    {/* <li class="list-group-item">A second item</li>
-                    <li class="list-group-item">A third item</li>
-                    <li class="list-group-item">A fourth item</li>
-                    <li class="list-group-item">And a fifth one</li> */}
                 </ul>
               </div>
             </div>
