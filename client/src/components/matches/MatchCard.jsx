@@ -10,6 +10,7 @@ import { Users, UserPlus, Settings, Info, Calendar, Building, MapPin, Clock, Bad
 const MatchCard = ({ id, host, title, borough, date, time, location, count, capacity, premium }) => {
     const { user } = useUser();
     const [showRegisterError, setShowRegisterError] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
 
     const formatTime = (timeString) => {
         const [hours, minutes, seconds] = timeString.split(":");
@@ -18,11 +19,34 @@ const MatchCard = ({ id, host, title, borough, date, time, location, count, capa
         return date.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: true });
     };
 
-    const handleRegisterUser = () => {
+    const handleRegisterUser = async () => {
         if (!user) {
+            setErrorMessage("Must be a valid user to join a match!");
             setShowRegisterError(true);
         } else {
-            console.log("add user to pickup participants");
+            try {
+                const response = await fetch("/api/participants", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        pickup_id: id,
+                        user_id: user.user_id,
+                    }),
+                });
+
+                if (!response.ok) {
+                    throw new Error("Failed to register user for this match.");
+                }
+
+                const data = await response.json();
+                console.log("User registered successfully:", data);
+            } catch (error) {
+                console.error("Error registering user:", error.message);
+                setErrorMessage("Failed to register user to match.");
+                setShowRegisterError(true);
+            }
         }
     };
 
@@ -91,7 +115,7 @@ const MatchCard = ({ id, host, title, borough, date, time, location, count, capa
                 </div>
             </div>
             <Toast show={showRegisterError} onClose={handleCloseRegisterError}>
-                Must be a valid user to join a game!
+                {errorMessage}
             </Toast>
         </div>
     );
