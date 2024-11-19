@@ -1,8 +1,9 @@
 import { useForm } from "react-hook-form";
+import PropTypes from "prop-types";
 
 import { useUser } from "../hooks/useUser";
 
-const MatchForm = ({onClose}) => {
+const MatchForm = ({ onClose }) => {
     const {
         register,
         handleSubmit,
@@ -16,7 +17,7 @@ const MatchForm = ({onClose}) => {
             ...data,
             host: user.user_id,
         };
-        console.log("Form Data:", formDataWithUserId);
+
         async function createMatch() {
             try {
                 const response = await fetch("/api/pickup/create", {
@@ -147,6 +148,10 @@ const MatchForm = ({onClose}) => {
             </button>
         </form>
     );
+};
+
+MatchForm.propTypes = {
+    onClose: PropTypes.func.isRequired,
 };
 
 export default MatchForm;
