@@ -1,23 +1,50 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useUser } from "../../hooks/useUser";
 
 import PropTypes from "prop-types";
 
 import Toast from "../ui/Toast";
-import { Users, UserPlus, Settings, Info, Calendar, Building, MapPin, Clock, BadgeCheck } from "lucide-react";
+import {
+    Users,
+    UserPlus,
+    Settings,
+    Info,
+    Calendar,
+    Building,
+    MapPin,
+    Clock,
+    BadgeCheck,
+    UserMinus,
+} from "lucide-react";
+
+const SkeletonButton = () => <div className="ml-auto h-10 w-32 animate-pulse rounded-md bg-gray-300" />;
 
 const MatchCard = ({ id, host, title, borough, date, time, location, count, capacity, premium }) => {
     const { user } = useUser();
     const [showRegisterError, setShowRegisterError] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
+    const [isRegistered, setIsRegistered] = useState(false);
+    const [loading, setLoading] = useState(true);
 
-    const formatTime = (timeString) => {
-        const [hours, minutes, seconds] = timeString.split(":");
-        const date = new Date();
-        date.setHours(hours, minutes, seconds);
-        return date.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: true });
-    };
+    useEffect(() => {
+        const checkRegistration = async () => {
+            try {
+                setLoading(true);
+                const response = await fetch(`/api/participants/check-registration/${id}/${user.user_id}`);
+                const data = await response.json();
+                setIsRegistered(data.registered);
+            } catch (error) {
+                console.error("Error checking registration:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        if (user) {
+            checkRegistration();
+        }
+    }, [user, id]);
 
     const handleRegisterUser = async () => {
         if (!user) {
@@ -50,8 +77,43 @@ const MatchCard = ({ id, host, title, borough, date, time, location, count, capa
         }
     };
 
+    const handleUnregisterUser = async () => {
+        if (!user) {
+            setErrorMessage("Must be a valid user to unregister!");
+            setShowRegisterError(true);
+        } else {
+            try {
+                const response = await fetch(`/api/participants/${id}/${user.user_id}`, {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                });
+
+                if (!response.ok) {
+                    throw new Error("Failed to unregister user from this match.");
+                }
+
+                const data = await response.json();
+                console.log("User unregistered successfully:", data);
+                setIsRegistered(false);
+            } catch (error) {
+                console.error("Error unregistering user:", error.message);
+                setErrorMessage("Failed to unregister user from match.");
+                setShowRegisterError(true);
+            }
+        }
+    };
+
     const handleCloseRegisterError = () => {
         setShowRegisterError(false);
+    };
+
+    const formatTime = (timeString) => {
+        const [hours, minutes, seconds] = timeString.split(":");
+        const date = new Date();
+        date.setHours(hours, minutes, seconds);
+        return date.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: true });
     };
 
     return (
@@ -101,12 +163,23 @@ const MatchCard = ({ id, host, title, borough, date, time, location, count, capa
                         </>
                     ) : (
                         <>
-                            <button
-                                onClick={handleRegisterUser}
-                                className="ml-auto flex items-center justify-center gap-x-2 rounded-xl border-2 border-darkGreen bg-darkGreen px-3 py-2 text-white hover:bg-white hover:text-darkGreen"
-                            >
-                                Register <UserPlus size={20} />
-                            </button>
+                            {loading ? (
+                                <SkeletonButton />
+                            ) : isRegistered ? (
+                                <button
+                                    onClick={handleUnregisterUser}
+                                    className="ml-auto flex items-center justify-center gap-x-2 rounded-xl border-2 border-red-500 bg-red-500 px-3 py-2 text-white hover:bg-white hover:text-red-500"
+                                >
+                                    Unregister <UserMinus size={20} />
+                                </button>
+                            ) : (
+                                <button
+                                    onClick={handleRegisterUser}
+                                    className="ml-auto flex items-center justify-center gap-x-2 rounded-xl border-2 border-darkGreen bg-darkGreen px-3 py-2 text-white hover:bg-white hover:text-darkGreen"
+                                >
+                                    Register <UserPlus size={20} />
+                                </button>
+                            )}
                             <Link to={`/matches/${id}`} className="ml-auto hover:text-darkGreen">
                                 <Info />
                             </Link>
