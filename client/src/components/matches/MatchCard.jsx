@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useUser } from "../hooks/useUser";
+import { useUser } from "../../hooks/useUser";
 
 import PropTypes from "prop-types";
 
-import Toast from "../components/Toast";
+import Toast from "../ui/Toast";
 import { Users, UserPlus, Settings, Info, Calendar, Building, MapPin, Clock, BadgeCheck } from "lucide-react";
 
 const MatchCard = ({ id, host, title, borough, date, time, location, count, capacity, premium }) => {

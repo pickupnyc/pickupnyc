@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 
-import LoginButton from "./LoginButton";
-import LogoutButton from "./LogoutButton";
+import LoginButton from "../auth/LoginButton";
+import LogoutButton from "../auth/LogoutButton";
 
-import { useUser } from "../hooks/useUser";
+import { useUser } from "../../hooks/useUser";
 
 const Header = () => {
     const { user } = useUser();
@@ -12,21 +12,21 @@ const Header = () => {
         <div className="mx-auto flex h-20 w-full max-w-[1440px] flex-row items-center justify-between px-24 py-6 md:h-24">
             <div className="space-x-8">
                 <Link to="/">
-                    <span className="text-primary text-3xl font-bold">PickUpNYC</span>
+                    <span className="text-3xl font-bold text-primary">PickUpNYC</span>
                 </Link>
             </div>
             <div className="flex flex-row gap-x-8">
-                <Link to="/" className="hover:bg-teaGreen flex items-center rounded-full px-5 py-3">
-                    <span className="text-primary font-bold tracking-wide">Home</span>
+                <Link to="/" className="flex items-center rounded-full px-5 py-3 hover:bg-teaGreen">
+                    <span className="font-bold tracking-wide text-primary">Home</span>
                 </Link>
-                <Link to="/matches" className="hover:bg-teaGreen flex items-center rounded-full px-5 py-3">
-                    <span className="text-primary font-bold tracking-wide">Matches</span>
+                <Link to="/matches" className="flex items-center rounded-full px-5 py-3 hover:bg-teaGreen">
+                    <span className="font-bold tracking-wide text-primary">Matches</span>
                 </Link>
-                <Link to="/forum" className="hover:bg-teaGreen flex items-center rounded-full px-5 py-3">
-                    <span className="text-primary font-bold tracking-wide">Forum</span>
+                <Link to="/forum" className="flex items-center rounded-full px-5 py-3 hover:bg-teaGreen">
+                    <span className="font-bold tracking-wide text-primary">Forum</span>
                 </Link>
-                <Link to="/help" className="hover:bg-teaGreen flex items-center rounded-full px-5 py-3">
-                    <span className="text-primary font-bold tracking-wide">Help</span>
+                <Link to="/help" className="flex items-center rounded-full px-5 py-3 hover:bg-teaGreen">
+                    <span className="font-bold tracking-wide text-primary">Help</span>
                 </Link>
             </div>
             <div className="flex flex-row">

@@ -1,4 +1,4 @@
-import GoogleLogin from "../components/GoogleLogin";
+import GoogleLogin from "../components/auth/GoogleLogin";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
@@ -9,10 +9,10 @@ const Login = () => {
     const toggle = () => {
         setPassVisible(!passVisible);
     };
-    
+
     return (
         <div className="flex h-screen w-full items-center justify-center">
-            <main className="bg-offWhite relative flex h-screen w-full flex-col items-center justify-center">
+            <main className="relative flex h-screen w-full flex-col items-center justify-center bg-offWhite">
                 <div className="container absolute inset-44 mx-auto rounded-lg border-2 bg-white shadow-xl md:h-2/5 md:w-2/5 lg:h-2/5 lg:w-80 xl:h-2/5 xl:w-80">
                     <div className="flex flex-col items-center justify-center">
                         <h1 className="mb-1 p-3 pb-1 text-center text-2xl font-semibold">Sign In</h1>

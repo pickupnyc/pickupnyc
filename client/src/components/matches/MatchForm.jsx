@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import PropTypes from "prop-types";
 
-import { useUser } from "../hooks/useUser";
+import { useUser } from "../../hooks/useUser";
 
 const MatchForm = ({ onClose }) => {
     const {

@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useUser } from "../hooks/useUser";
 
-import Modal from "../components/Modal";
-import MatchForm from "../components/MatchForm";
-import AllMatches from "../components/AllMatches";
-import Toast from "../components/Toast";
+import Modal from "../components/ui/Modal";
+import MatchForm from "../components/matches/MatchForm";
+import AllMatches from "../components/matches/AllMatches";
+import Toast from "../components/ui/Toast";
 
 const Matches = () => {
     const { user } = useUser();
