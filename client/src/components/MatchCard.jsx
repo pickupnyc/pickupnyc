@@ -1,18 +1,33 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useUser } from "../hooks/useUser";
 
 import PropTypes from "prop-types";
 
+import Toast from "../components/Toast";
 import { Users, UserPlus, Settings, Info, Calendar, Building, MapPin, Clock, BadgeCheck } from "lucide-react";
 
 const MatchCard = ({ id, host, title, borough, date, time, location, count, capacity, premium }) => {
     const { user } = useUser();
+    const [showRegisterError, setShowRegisterError] = useState(false);
 
     const formatTime = (timeString) => {
         const [hours, minutes, seconds] = timeString.split(":");
         const date = new Date();
         date.setHours(hours, minutes, seconds);
         return date.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: true });
+    };
+
+    const handleRegisterUser = () => {
+        if (!user) {
+            setShowRegisterError(true);
+        } else {
+            console.log("add user to pickup participants");
+        }
+    };
+
+    const handleCloseRegisterError = () => {
+        setShowRegisterError(false);
     };
 
     return (
@@ -62,7 +77,10 @@ const MatchCard = ({ id, host, title, borough, date, time, location, count, capa
                         </>
                     ) : (
                         <>
-                            <button className="ml-auto flex items-center justify-center gap-x-2 rounded-xl border-2 border-darkGreen bg-darkGreen px-3 py-2 text-white hover:bg-white hover:text-darkGreen">
+                            <button
+                                onClick={handleRegisterUser}
+                                className="ml-auto flex items-center justify-center gap-x-2 rounded-xl border-2 border-darkGreen bg-darkGreen px-3 py-2 text-white hover:bg-white hover:text-darkGreen"
+                            >
                                 Register <UserPlus size={20} />
                             </button>
                             <Link to={`/matches/${id}`} className="ml-auto hover:text-darkGreen">
@@ -72,6 +90,9 @@ const MatchCard = ({ id, host, title, borough, date, time, location, count, capa
                     )}
                 </div>
             </div>
+            <Toast show={showRegisterError} onClose={handleCloseRegisterError}>
+                Must be a valid user to join a game!
+            </Toast>
         </div>
     );
 };

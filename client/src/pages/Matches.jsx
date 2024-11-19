@@ -75,7 +75,9 @@ const Matches = () => {
             <Modal isOpen={isOpen} onClose={handleCloseForm}>
                 <MatchForm onClose={handleCloseForm} />
             </Modal>
-            <Toast show={showToast} onClose={handleCloseToast} />
+            <Toast show={showToast} onClose={handleCloseToast}>
+                Must be a valid user to create a match!
+            </Toast>
         </div>
     );
 };
