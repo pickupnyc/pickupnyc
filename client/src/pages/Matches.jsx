@@ -70,10 +70,11 @@ const Matches = () => {
                 </button>
             </div>
 
+            <AllMatches borough={borough} sortOption={sortOption} />
+
             <Modal isOpen={isOpen} onClose={handleCloseForm}>
                 <MatchForm onClose={handleCloseForm} />
             </Modal>
-            <AllMatches borough={borough} sortOption={sortOption} />
             <Toast show={showToast} onClose={handleCloseToast} />
         </div>
     );
