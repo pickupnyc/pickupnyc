@@ -19,7 +19,7 @@ const Toast = ({ show, onClose, children }) => {
         <div className="fixed bottom-24 left-1/2 z-[999] -translate-x-1/2 transform rounded-xl bg-red-500 p-4">
             <div className="flex flex-col gap-y-4" role="alert" aria-live="assertive" aria-atomic="true">
                 <div className="flex flex-row items-center justify-between">
-                    <strong className="text-white">Authentication Required</strong>
+                    <strong className="text-white">Error</strong>
                     <small className="text-white">just now</small>
                 </div>
                 <div className="text-white">{children}</div>
