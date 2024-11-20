@@ -35,75 +35,24 @@ and community features.
 **Developer Tools:** Git, GitHub, Figma, Postman
 
 ## Core Features
+- **Authentication via email or Google sign-in** ✅
+![auth_gif](https://github.com/user-attachments/assets/9c4a88d7-0cab-48da-a193-c6256116a4bd)
 
-### 🤝 Community Engagement
-
--   **User Profiles**
-    <!-- - Customizable profile with game history -->
-
-    ✅ - Authentication via email or Google sign-in
-    ![auth_gif](https://github.com/user-attachments/assets/9c4a88d7-0cab-48da-a193-c6256116a4bd)
-
-
-    -   Profile picture customization
-
--   **Social Interactions**
-    -   Create and participate in soccer discussions
-    -   Like and comment on posts
-    <!-- - Connect with local players -->
-
-### ⚽ Pickup Game Organization
-
-- **Pickup Game Form** ✅
-    - Create form to setup pickup Games
+- **Game Creation** ✅
+    - Host games in any NYC borough
+    - Set custom rules and skill levels
+    - Specify player capacity and time slots
+    - Edit or Delete created game
 ![Kapture 2024-11-13 at 16 38 20](https://github.com/user-attachments/assets/b3a57c04-1476-4a67-bac6-41014b44d300)
 
--   **Game Creation**
+- **Search & Discovery**
+    - Filter games by borough and location
+    - Filter by date, time, and skill level
 
-    -   Host games in any NYC borough
-    -   Set custom rules and skill levels
-    -   Specify player capacity and time slots
-    -   Get updates about games
+- **Forum**
+    - Create and participate in soccer discussions
+    - Like and comment on posts
 
--   **Game Discovery**
 
-    -   Browse games by borough and location
-    -   Filter by date, time, and skill level
-    -   View game details and player count
-    -   Get location directions
 
--   **Game Management**
-    -   Register for upcoming games
-    -   Track registered players
-    -   Receive game updates
 
-<!-- ### 🎯 Equipment Rental Service
-- **Available Equipment**
-  - Soccer balls
-  - Team pinnies/bibs
-  - Cones and markers
-  - Portable goal posts
-
-- **Rental Features**
-  - Convenient delivery to game location
-  - On-site support during games
-  - Secure deposit system
-  - Damage protection insurance -->
-
-### 📱 Platform Features
-
--   **Search & Discovery**
-    <!-- - Advanced game search
-    - Player and organizer search -->
-
-    -   Borough-specific browsing
-
--   **Live Updates**
--   Transfer news and updates
--   League standings
--   Team and player statistics
-
--   **Coverage**
--   Major leagues and tournaments
--   Match highlights and recaps
--   Breaking news and announcements
