@@ -8,6 +8,7 @@ import configurePassport from "./config/passport.js";
 
 import authRoutes from "./routes/authRouter.js";
 import pickupRoutes from "./routes/pickupRoutes.js";
+import pickupParticipantRoutes from "./routes/pickupParticipantsRouter.js";
 
 dotenv.config();
 
@@ -26,7 +27,7 @@ if (process.env.NODE_ENV === "production") {
     app.use(express.static("public"));
 }
 
-app.set("trust proxy", 1); 
+app.set("trust proxy", 1);
 app.use(
     session({
         secret: process.env.COOKIE_SECRET,
@@ -52,12 +53,13 @@ app.use("/api/auth", authRoutes);
 
 app.use("/api/pickup", pickupRoutes);
 
+app.use("/api/participants", pickupParticipantRoutes);
+
 if (process.env.NODE_ENV === "production") {
     app.get("/*", (_, res) => {
         res.sendFile(path.resolve("public", "index.html"));
     });
 }
-
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {

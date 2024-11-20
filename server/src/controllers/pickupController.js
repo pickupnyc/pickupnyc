@@ -5,15 +5,26 @@ export const createPickupGame = async (req, res) => {
     try {
         const { title, borough, date, time, location, host, rules, capacity, premium } = req.body;
 
-        // Change Location to a string instead of a point in the db
-        const locationPoint = `(${location.lat}, ${location.lng})`; // Assuming location has `lat` and `lng` properties
+        // Ensure that the location is provided as an array or string that can be converted to a PostgreSQL point
+
+        const formattedTime = time + ':00'; 
 
         const result = await pool.query(
             `INSERT INTO pickups (title, borough, date, time, location, host, rules, capacity, premium)
              VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
              RETURNING *`,
-            [title, borough, date, time, locationPoint, host, rules, capacity, premium]
+            [title, borough, date, formattedTime, location, host, rules, capacity, premium]
         );
+
+        try{
+            await pool.query(
+            `INSERT INTO pickup_participants (pickup_id, user_id)
+             VALUES ($1, $2)`,
+            [result.rows[0].id, host]
+        )}
+        catch (error){
+            console.error("Error adding host to pickup participants table:", error);
+        }
 
         res.status(201).json({
             message: 'Pickup game created successfully',
