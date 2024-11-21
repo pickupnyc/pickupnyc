@@ -1,6 +1,6 @@
 import express from "express";
 import {
-    getAllPickupParticipants,
+    getPickupDetails,
     createPickupParticipant,
     deletePickupParticipant,
     isUserRegistered,
@@ -8,7 +8,7 @@ import {
 
 const router = express.Router();
 
-router.get("/:pickup_id", getAllPickupParticipants);
+router.get("/:pickup_id", getPickupDetails);
 
 router.get("/check-registration/:pickup_id/:user_id", isUserRegistered);
 
