@@ -4,7 +4,7 @@
 
 **Designed and developed by:** Jawad Rada, Mubarak Odufade, Patrick Lisiecki
 
-**Link to deployed app:**
+**Link to deployed app:** https://pickupnyc.onrender.com/
 
 ## About
 
@@ -45,11 +45,11 @@ and community features.
     - Edit or Delete created game
 ![Kapture 2024-11-13 at 16 38 20](https://github.com/user-attachments/assets/b3a57c04-1476-4a67-bac6-41014b44d300)
 
-- **Search & Discovery**
+- **Search & Discovery** ✅
     - Filter games by borough and location
     - Filter by date, time, and skill level
 
-- **Forum**
+- **Forum** ✅
     - Create and participate in soccer discussions
     - Like and comment on posts
 
