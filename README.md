@@ -43,11 +43,13 @@ and community features.
     - Set custom rules and skill levels
     - Specify player capacity and time slots
     - Edit or Delete created game
-![Kapture 2024-11-13 at 16 38 20](https://github.com/user-attachments/assets/b3a57c04-1476-4a67-bac6-41014b44d300)
+![Kapture 2024-11-20 at 18 01 24](https://github.com/user-attachments/assets/5b1b5aaf-0f72-44f5-a88f-3888099aa580)
+
 
 - **Search & Discovery** ✅
     - Filter games by borough and location
     - Filter by date, time, and skill level
+![Kapture 2024-11-20 at 17 58 18](https://github.com/user-attachments/assets/dce09e15-c609-438d-8cf0-670a6d8a58a0)
 
 - **Forum** ✅
     - Create and participate in soccer discussions
