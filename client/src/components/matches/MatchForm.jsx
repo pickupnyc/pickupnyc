@@ -29,6 +29,7 @@ const MatchForm = ({ onClose }) => {
                 });
                 const data = await response.json();
                 console.log("Match created:", data);
+                window.location.reload();
                 onClose();
             } catch (error) {
                 console.error("Error creating match:", error);
