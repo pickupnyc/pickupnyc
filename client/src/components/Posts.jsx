@@ -1,61 +1,88 @@
 import styles from "./Forum.module.css"
-import { useState } from 'react';
+import { useUser } from "../hooks/useUser";
+import { useState, useEffect} from 'react';
 export default function Posts() {
     const [replyingTo, setReplyingTo] = useState(null);
     const [newPostContent, setNewPostContent] = useState('');
+    const [groupedPosts, setGroupedPosts] = useState({});
+    const { user } = useUser();
     
-    // Example data structure
-    const [posts, setPosts] = useState([
-      {
-        id: 1,
-        username: 'user1',
-        body: 'This is a main post about something interesting. What do you all think?',
-        created_at: '2024-03-15T10:00:00',
-        is_reply: false,
-        parent_post_id: null,
-        likes: 5
-      },
-      {
-        id: 2,
-        username: 'user2',
-        body: 'This is a really good point! I totally agree with what you said.',
-        created_at: '2024-03-15T10:05:00',
-        is_reply: true,
-        parent_post_id: 1,
-        likes: 2
-      }
-    ]);
+    const [posts, setPosts] = useState([]);
   
     const handleSubmitPost = () => {
       if (!newPostContent.trim()) return;
       
       const newPost = {
-        id: posts.length + 1,
-        username: 'currentUser',
+        creator_id: user.user_id,
         body: newPostContent,
         created_at: new Date().toISOString(),
         is_reply: Boolean(replyingTo),
         parent_post_id: replyingTo,
         likes: 0
       };
-  
-      setPosts([...posts, newPost]);
-      setNewPostContent('');
-      setReplyingTo(null);
+      const handleSubmit = async () => {
+        const results = await fetch('http://localhost:3000/api/posts/create', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(newPost)
+        });
+        const post = await results.json();
+        setPosts([...posts, post]);
+        setNewPostContent('');
+        setReplyingTo(null);
+      };
+      handleSubmit();
     };
-  
-    // Group posts and replies
-    const groupedPosts = posts.reduce((acc, post) => {
-      if (!post.is_reply) {
-        acc[post.id] = {
-          mainPost: post,
-          replies: []
-        };
-      } else if (acc[post.parent_post_id]) {
-        acc[post.parent_post_id].replies.push(post);
+
+    const handleLike = async (postId) => {
+      try {
+        const response = await fetch(`http://localhost:3000/api/posts/${postId}/like`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+    
+        if (!response.ok) {
+          throw new Error('Failed to like post');
+        }
+    
+        const updatedPost = await response.json();
+        
+        setPosts(posts.map(post => 
+          post.id === postId ? updatedPost : post
+        ));
+      } catch (error) {
+        console.error('Error liking post:', error);
       }
-      return acc;
-    }, {});
+    };
+
+    useEffect(()=>{
+      const getPosts = async () => {
+        const results = await fetch('http://localhost:3000/api/posts');
+        const posts = await results.json();
+        setPosts(posts);
+      }
+      getPosts();
+    },[])
+
+    useEffect(()=> {
+      // Group posts and replies
+      const groupedPostsObj = posts.reduce((acc, post) => {
+        if (!post.is_reply) {
+          acc[post.id] = {
+            mainPost: post,
+            replies: []
+          };
+        } else if (acc[post.parent_post_id]) {
+          acc[post.parent_post_id].replies.push(post);
+        }
+        return acc;
+      }, {});
+      setGroupedPosts(groupedPostsObj);
+    }, [posts])
   
     return (
       <div className="max-w-2xl mx-auto p-4 space-y-6">
@@ -105,7 +132,7 @@ export default function Posts() {
                 </div>
                 <p className="text-gray-800 mb-3">{mainPost.body}</p>
                 <div className="flex space-x-4">
-                  <button className="text-gray-500 hover:text-blue-500 text-sm font-medium">
+                  <button className="text-gray-500 hover:text-blue-500 text-sm font-medium" onClick={() => handleLike(mainPost.id)}>
                     Like
                   </button>
                   <button
@@ -133,7 +160,7 @@ export default function Posts() {
                       </div>
                     </div>
                     <p className="text-gray-800 mb-3">{reply.body}</p>
-                    <button className="text-gray-500 hover:text-blue-500 text-sm font-medium">
+                    <button className="text-gray-500 hover:text-blue-500 text-sm font-medium" onClick={() => handleLike(reply.id)} >
                       Like
                     </button>
                   </div>
