@@ -69,6 +69,7 @@ const MatchCard = ({ id, host, title, borough, date, time, location, count, capa
 
                 const data = await response.json();
                 console.log("User registered successfully:", data);
+                setIsRegistered(true);
             } catch (error) {
                 console.error("Error registering user:", error.message);
                 setErrorMessage("Failed to register user to match.");
