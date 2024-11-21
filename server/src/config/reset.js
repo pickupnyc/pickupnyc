@@ -135,6 +135,17 @@ async function alterPickupsTable() {
     };
 }
 
+async function resetDatabase() {
+    const truncateUsersTableQuery = `TRUNCATE TABLE users RESTART IDENTITY CASCADE;`;
+
+    try {
+        await pool.query(truncateUsersTableQuery);
+        console.log("Database reset successfully");
+    } catch (err) {
+        console.error("Error resetting database", err);
+    }
+}
+
 
 // await alterPickupsTable();
 // await deletePostsTable();
