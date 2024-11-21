@@ -110,7 +110,7 @@ const MatchCard = ({ id, host, title, borough, date, time, location, count, capa
 
                 const data = await response.json();
                 console.log("User unregistered successfully:", data);
-                setParticipantCount(Math.min(participantCount - 1, 0));
+                setParticipantCount(Math.max(participantCount - 1, 0));
                 setIsRegistered(false);
                 setSuccessMessage(`Successfully unregistered for ${title}.`);
                 setShowSuccessMessage(true);
