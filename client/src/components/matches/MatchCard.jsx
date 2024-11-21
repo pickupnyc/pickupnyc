@@ -25,7 +25,7 @@ const MatchCard = ({ id, host, title, borough, date, time, location, count, capa
     const [showRegisterError, setShowRegisterError] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
     const [isRegistered, setIsRegistered] = useState(false);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         const checkRegistration = async () => {
