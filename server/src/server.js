@@ -9,6 +9,7 @@ import configurePassport from "./config/passport.js";
 import authRoutes from "./routes/authRouter.js";
 import pickupRoutes from "./routes/pickupRoutes.js";
 import pickupParticipantRoutes from "./routes/pickupParticipantsRouter.js";
+import postRoutes from "./routes/postsRouter.js";
 
 dotenv.config();
 
@@ -52,6 +53,8 @@ configurePassport(passport);
 app.use("/api/auth", authRoutes);
 
 app.use("/api/pickup", pickupRoutes);
+
+app.use("/api/posts", postRoutes);
 
 app.use("/api/participants", pickupParticipantRoutes);
 
