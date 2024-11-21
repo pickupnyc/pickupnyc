@@ -5,6 +5,7 @@ import { useUser } from "../../hooks/useUser";
 import PropTypes from "prop-types";
 
 import Toast from "../ui/Toast";
+import SuccessToast from "../ui/SuccessToast";
 import {
     Users,
     UserPlus,
@@ -22,8 +23,14 @@ const SkeletonButton = () => <div className="ml-auto h-10 w-32 animate-pulse rou
 
 const MatchCard = ({ id, host, title, borough, date, time, location, count, capacity, premium }) => {
     const { user } = useUser();
+    const [participantCount, setParticipantCount] = useState(count);
+    // For errors
     const [showRegisterError, setShowRegisterError] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
+    // For successful user actions
+    const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+    const [successMessage, setSuccessMessage] = useState("");
+
     const [isRegistered, setIsRegistered] = useState(false);
     const [loading, setLoading] = useState(false);
 
@@ -50,6 +57,9 @@ const MatchCard = ({ id, host, title, borough, date, time, location, count, capa
         if (!user) {
             setErrorMessage("Must be a valid user to join a match!");
             setShowRegisterError(true);
+        } else if (participantCount === capacity) {
+            setErrorMessage("Match is at full capacity!");
+            setShowRegisterError(true);
         } else {
             try {
                 const response = await fetch("/api/participants", {
@@ -69,7 +79,10 @@ const MatchCard = ({ id, host, title, borough, date, time, location, count, capa
 
                 const data = await response.json();
                 console.log("User registered successfully:", data);
+                setParticipantCount(Math.min(participantCount + 1, capacity));
                 setIsRegistered(true);
+                setSuccessMessage(`Successfully registered for ${title}.`);
+                setShowSuccessMessage(true);
             } catch (error) {
                 console.error("Error registering user:", error.message);
                 setErrorMessage("Failed to register user to match.");
@@ -97,7 +110,10 @@ const MatchCard = ({ id, host, title, borough, date, time, location, count, capa
 
                 const data = await response.json();
                 console.log("User unregistered successfully:", data);
+                setParticipantCount(Math.min(participantCount - 1, 0));
                 setIsRegistered(false);
+                setSuccessMessage(`Successfully unregistered for ${title}.`);
+                setShowSuccessMessage(true);
             } catch (error) {
                 console.error("Error unregistering user:", error.message);
                 setErrorMessage("Failed to unregister user from match.");
@@ -110,6 +126,10 @@ const MatchCard = ({ id, host, title, borough, date, time, location, count, capa
         setShowRegisterError(false);
     };
 
+    const handleCloseSuccessMessage = () => {
+        setShowSuccessMessage(false);
+    };
+
     const formatTime = (timeString) => {
         const [hours, minutes, seconds] = timeString.split(":");
         const date = new Date();
@@ -118,7 +138,7 @@ const MatchCard = ({ id, host, title, borough, date, time, location, count, capa
     };
 
     return (
-        <div className="overflow-hidden rounded-lg border border-[#555] bg-white">
+        <div className="overflow-hidden rounded-lg border border-[#555] bg-offWhite">
             <div className="h-40">
                 <img src={"/field.webp"} alt={`${borough} Match`} className="h-full w-full object-cover" />
             </div>
@@ -147,14 +167,14 @@ const MatchCard = ({ id, host, title, borough, date, time, location, count, capa
                 <div className="flex items-center gap-x-4">
                     <Users />
                     <p className="text-gray-600">
-                        {count}/{capacity}
+                        {participantCount}/{capacity}
                     </p>
                 </div>
                 <div className="flex items-center">
                     {user && user.user_id === host ? (
                         <>
                             <Link to={`/matches/edit/${id}`} className="ml-auto">
-                                <button className="flex items-center justify-center gap-x-2 rounded-xl border-2 border-darkGreen bg-darkGreen px-3 py-2 text-white hover:bg-white hover:text-darkGreen">
+                                <button className="flex items-center justify-center gap-x-2 rounded-xl border-2 border-darkGreen bg-darkGreen px-3 py-2 text-white hover:bg-offWhite hover:text-darkGreen">
                                     Edit <Settings size={20} />
                                 </button>
                             </Link>
@@ -169,14 +189,14 @@ const MatchCard = ({ id, host, title, borough, date, time, location, count, capa
                             ) : isRegistered ? (
                                 <button
                                     onClick={handleUnregisterUser}
-                                    className="ml-auto flex items-center justify-center gap-x-2 rounded-xl border-2 border-red-500 bg-red-500 px-3 py-2 text-white hover:bg-white hover:text-red-500"
+                                    className="ml-auto flex items-center justify-center gap-x-2 rounded-xl border-2 border-red-500 bg-red-500 px-3 py-2 text-white hover:bg-offWhite hover:text-red-500"
                                 >
                                     Unregister <UserMinus size={20} />
                                 </button>
                             ) : (
                                 <button
                                     onClick={handleRegisterUser}
-                                    className="ml-auto flex items-center justify-center gap-x-2 rounded-xl border-2 border-darkGreen bg-darkGreen px-3 py-2 text-white hover:bg-white hover:text-darkGreen"
+                                    className="ml-auto flex items-center justify-center gap-x-2 rounded-xl border-2 border-darkGreen bg-darkGreen px-3 py-2 text-white hover:bg-offWhite hover:text-darkGreen"
                                 >
                                     Register <UserPlus size={20} />
                                 </button>
@@ -188,6 +208,9 @@ const MatchCard = ({ id, host, title, borough, date, time, location, count, capa
                     )}
                 </div>
             </div>
+            <SuccessToast show={showSuccessMessage} onClose={handleCloseSuccessMessage}>
+                {successMessage}
+            </SuccessToast>
             <Toast show={showRegisterError} onClose={handleCloseRegisterError}>
                 {errorMessage}
             </Toast>
