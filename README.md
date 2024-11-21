@@ -54,7 +54,7 @@ and community features.
 - **Forum** ✅
     - Create and participate in soccer discussions
     - Like and comment on posts
-
+    - ![Forum Demo](https://imgur.com/9o4frws.gif)
 
 
 
