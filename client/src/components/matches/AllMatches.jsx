@@ -53,7 +53,7 @@ const AllMatches = ({ borough, sortOption }) => {
                         />
                     ))
                 ) : (
-                    <p className="col-span-full text-3xl text-gray-500">No matches found...</p>
+                    <p className="col-span-full text-3xl text-gray-500">Loading matches...</p>
                 )}
             </div>
         </div>
