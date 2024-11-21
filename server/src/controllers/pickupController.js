@@ -4,9 +4,6 @@ import { pool } from '../config/database.js';
 export const createPickupGame = async (req, res) => {
     try {
         const { title, borough, date, time, location, host, rules, capacity, premium } = req.body;
-
-        // Ensure that the location is provided as an array or string that can be converted to a PostgreSQL point
-
         const formattedTime = time + ':00'; 
 
         const result = await pool.query(
@@ -41,15 +38,12 @@ export const updatePickupGame = async (req, res) => {
         const { id } = req.params;
         const { title, borough, date, time, location, host, rules, capacity, premium } = req.body;
 
-        // Ensure that the location is provided as an array or string that can be converted to a PostgreSQL point
-        const locationPoint = `(${location.lat}, ${location.lng})`; // Assuming location has `lat` and `lng` properties
-
         const result = await pool.query(
             `UPDATE pickups
              SET title = $1, borough = $2, date = $3, time = $4, location = $5, host = $6, rules = $7, capacity = $8, premium = $9
              WHERE id = $10
              RETURNING *`,
-            [title, borough, date, time, locationPoint, host, rules, capacity, premium, id]
+            [title, borough, date, time, location, host, rules, capacity, premium, id]
         );
 
         if (result.rows.length === 0) {
